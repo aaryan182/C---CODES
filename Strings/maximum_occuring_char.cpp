@@ -32,4 +32,4 @@ int main()
    cin>>s;
    cout<<getMaxOccuringChar(s); 
    return 0;
-}
+}     
