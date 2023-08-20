@@ -7,13 +7,9 @@ string removeAdjacent(string s)
     for (auto c : s)
     {
         if (!result.empty() && result.back() == c)
-        {
             result.pop_back();
-        }
-        else
-        {
+        else 
             result.push_back(c);
-        }
     }
     return result;
 }
