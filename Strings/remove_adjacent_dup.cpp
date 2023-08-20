@@ -6,7 +6,7 @@ string removeAdjacent(string s)
    string result;
     for (auto c : s)
     {
-        if (!result.empty() && result.back() == c)
+        if (!result.empty() && result.back() == c) // .back retrieves the last character
             result.pop_back();
         else 
             result.push_back(c);
