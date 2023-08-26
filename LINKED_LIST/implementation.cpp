@@ -13,6 +13,16 @@ public:
         this->data = data;
         this->next = NULL;
     }
+    //destructor
+    ~Node(){
+        int value = this->data;
+        //memory free
+        if(this->next != NULL){
+            delete next;
+            this->next = NULL;
+        }
+        cout<<"memory is free for node with data : "<<value<<endl;
+    }
 };
 
 void insertAtHead(Node *&head, int data)
@@ -61,6 +71,34 @@ void insertAtPosition(Node *&head,Node *&tail, int data, int position)
     temp->next = nodeToInsert;
 }
 
+void deleteNode(Node *&head, int position){
+    // deleting first or start node 
+    if(position==1){
+        Node *temp = head;   
+        head = head->next;
+        //memory free start node
+        temp -> next = NULL;
+        delete temp;
+    }
+    else
+    {
+        // deleting any middle or last node
+        Node *curr = head;
+        Node *prev = NULL;
+
+        int count = 1;
+        while(count < position){
+            prev = curr;
+            curr = curr->next;
+            count++;
+        }
+        prev->next = curr->next;
+        curr->next = NULL;
+        delete curr;
+    }
+    
+}
+
 void print(Node *head)
 {
     Node *temp = head;
@@ -94,12 +132,16 @@ int main()
     print(tail);
     insertAtPosition(head ,tail, 25, 3);
     print(tail);
+    deleteNode(head , 1);
+    print(head);
     return 0;
 }
 
 // This code defines a class called `Node` which represents a node in a linked list. Each node has an integer data value and a pointer to the next node in the list.
-// The `Node` class has a constructor that takes an integer parameter and initializes the data value with the parameter value and sets the next pointer to `NULL`.
-// The code also includes two functions: `insertAtHead` and `print`.
-// The `insertAtHead` function takes a reference to a pointer to a `Node` object (`head`) and an integer value (`data`). It creates a new `Node` object with the given data value and sets its next pointer to the current head node. Then it updates the head pointer to point to the new node, effectively inserting the new node at the beginning of the linked list.
-// The `print` function takes a pointer to a `Node` object (`head`) and prints the data values of all nodes in the linked list. It starts by creating a temporary pointer (`temp`) and setting it to the head node. Then it enters a loop that continues until the `temp` pointer reaches `NULL`. Inside the loop, it prints the data value of the current node and updates the `temp` pointer to point to the next node in the list. Finally, it prints a newline character to separate the output from any subsequent output.
-// Overall, this code provides a basic implementation of a linked list data structure with the ability to insert a new node at the beginning of the list and print the contents of the list.
+// The code also includes several functions for manipulating the linked list:
+// 1. `insertAtHead`: This function takes a reference to the head of the linked list and an integer data value. It creates a new node with the given data value and inserts it at the beginning of the list. The new node's `next` pointer is set to the current head, and the head is updated to point to the new node.
+// 2. `insertAtTail`: This function takes a reference to the tail of the linked list and an integer data value. It creates a new node with the given data value and inserts it at the end of the list. It does this by iterating through the list starting from the tail until it reaches the last node, and then setting the `next` pointer of the last node to the new node.
+// 3. `insertAtPosition`: This function takes a reference to the head and tail of the linked list, an integer data value, and a position. It inserts a new node with the given data value at the specified position in the list. If the position is 1, it calls the `insertAtHead` function to insert the node at the beginning of the list. Otherwise, it iterates through the list starting from the head until it reaches the node before the specified position, and then inserts the new node after that node.
+// 4. `deleteNode`: This function takes a reference to the head of the linked list and a position. It deletes the node at the specified position in the list. If the position is 1, it updates the head to point to the second node and frees the memory of the first node. Otherwise, it iterates through the list starting from the head until it reaches the node before the specified position, and then updates the `next` pointer of that node to skip the node at the specified position. It then frees the memory of the node at the specified position.
+// 5. `print`: This function takes a pointer to the head of the linked list and prints the data values of all nodes in the list, separated by spaces.
+// Overall, this code provides basic operations for creating, inserting, deleting, and printing a linked list.
