@@ -182,7 +182,6 @@ int main()
     return 0;
 }
 
-
 // This code contains several functions that manipulate a doubly linked list. Let's go through each function and understand how it works.
 // The `insertAtHead` function takes a reference to the head of the linked list (`Node *&head`) and an integer value (`int d`). It first checks if the head is `NULL`, which means the list is empty. If it is, it creates a new node with the given value and assigns it to the head. If the list is not empty, it creates a new node with the given value, sets its `next` pointer to the current head, sets the `prev` pointer of the current head to the new node, and finally updates the head to point to the new node.
 // The `insertAtTail` function takes a reference to the tail of the linked list (`Node *&tail`) and an integer value (`int d`). It first checks if the tail is `NULL`, which means the list is empty. If it is, it creates a new node with the given value and assigns it to the tail. If the list is not empty, it creates a new node with the given value, sets the `next` pointer of the current tail to the new node, sets the `prev` pointer of the new node to the current tail, and finally updates the tail to point to the new node.
