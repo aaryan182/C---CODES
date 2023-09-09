@@ -142,4 +142,4 @@ int main()
    
 //    If none of the above conditions are true, it increments `front` by 1.
    
-//    Finally, it returns the `ans` variable which contains the value of the removed element.
+//    Finally, it returns the `ans` variable which contains the value of the removed element. 
