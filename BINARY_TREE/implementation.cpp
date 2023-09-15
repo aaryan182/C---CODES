@@ -167,6 +167,8 @@ int main()
     return 0;
 }
 
+
+
 // Node *buildTree(Node *root):  This code is a recursive function that builds a binary tree.
 
 // The function takes a pointer to a Node as input, which represents the root of the current subtree. It prompts the user to enter a value for the current node, and reads it from the input using `cin`.
