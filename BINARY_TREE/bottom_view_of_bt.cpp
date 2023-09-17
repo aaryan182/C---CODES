@@ -66,20 +66,26 @@ int main() {
 }
 
 
-// This code is a solution to a problem that involves finding the bottom view of a binary tree. The bottom view of a binary tree is defined as the set of nodes that are visible when looking at the tree from the bottom.
+// This code is a C++ implementation of a function that returns a list of nodes visible from the bottom view of a binary tree.
 
-// The code starts by checking if the root of the tree is NULL. If it is, an empty vector is returned as there are no nodes in the tree.
+// The function takes a pointer to the root node of the binary tree as input and returns a vector of integers.
 
-// Next, a map called `topNode` is created. This map will store the horizontal distance (hd) of each node from the root, along with the value of the node. The horizontal distance is a measure of how far a node is from the root horizontally.
+// First, the code checks if the root node is NULL. If it is, an empty vector is returned.
 
-// A queue called `q` is also created. This queue will be used to perform a level order traversal of the tree. The queue initially contains a pair consisting of the root node and its horizontal distance, which is 0.
+// Next, a map called `bottomNode` is created. This map will store the bottom nodes for each horizontal distance. The horizontal distance is the distance of a node from the root node in the horizontal direction.
 
-// The code then enters a while loop that continues until the queue is empty. In each iteration of the loop, the front element of the queue is removed and stored in a temporary pair called `temp`. The front node of the pair is then extracted and stored in a variable called `frontNode`, and the horizontal distance is stored in a variable called `hd`.
+// A queue called `q` is also created. This queue will be used for a breadth-first search traversal of the binary tree.
 
-// The value of the front node is then added to the `topNode` map at the key corresponding to its horizontal distance.
+// The root node is pushed into the queue with a horizontal distance of 0.
 
-// Next, the code checks if the front node has a left child. If it does, a pair consisting of the left child and `hd-1` is pushed into the queue. This represents moving one unit to the left horizontally from the current node. Similarly, if the front node has a right child, a pair consisting of the right child and `hd+1` is pushed into the queue. This represents moving one unit to the right horizontally from the current node.
+// The code then enters a while loop that continues until the queue is empty. In each iteration of the loop, the front element of the queue is removed and stored in a temporary pair called `temp`. The first element of the pair is the node, and the second element is the horizontal distance.
 
-// Once the while loop is finished, the code iterates over the `topNode` map using a range-based for loop. For each key-value pair in the map, the value (which represents the node's value) is added to the `ans` vector.
+// The code then updates the `bottomNode` map with the value of the current node for its horizontal distance.
 
-// Finally, the `ans` vector is returned, which contains the values of the nodes in the bottom view of the binary tree.
+// Next, the code checks if the current node has a left child. If it does, the left child is pushed into the queue with a horizontal distance that is one less than the current node's horizontal distance. This is because the left child is one unit to the left of the current node.
+
+// Similarly, if the current node has a right child, it is pushed into the queue with a horizontal distance that is one more than the current node's horizontal distance. This is because the right child is one unit to the right of the current node.
+
+// Once the while loop is finished, the `bottomNode` map contains the bottom nodes for each horizontal distance. The code then populates the result vector `ans` with the bottom nodes in order of their horizontal distance.
+
+// Finally, the `ans` vector is returned as the output of the function.
