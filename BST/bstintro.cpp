@@ -103,6 +103,50 @@ Node *insertIntoBST(Node *&root, int data)
     return root;
 }
 
+Node* deleteFromBST(Node* root, int val){
+    // base case 
+    if(root==NULL){
+        return root;
+    }
+    if(root->data == val){
+        // 0 child
+        if(root->left == NULL && root->right == NULL){
+            return NULL;
+        }
+        //1 child
+        
+        // left child 
+        if(root->left != NULL && root->right == NULL){
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+
+        // right child
+        if(root->right != NULL && root->left == NULL){
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+
+        // 2 child
+        if(root->left != NULL && root->right != NULL){
+            Node* temp = minVal(root->right);
+            root->data = temp->data;
+            root->right = deleteFromBST(root->right, temp->data);
+            return root;
+        }
+    }
+    else if(val < root->data){
+        root->left = deleteFromBST(root->left, val);
+        return root;
+    }
+    else{
+        root->right = deleteFromBST(root->right, val);
+        return root;
+    }
+}
+
 void takeInput(Node *&root)
 {
     int data;
@@ -179,3 +223,29 @@ int main()
 // 8. `maxVal(Node* root)`: This function finds the maximum value node in a binary search tree. It takes the root node as a parameter and iteratively traverses the right subtree until it reaches the rightmost node, which has the maximum value. It returns the pointer to that node.
 
 // These functions provide various operations and traversals for binary search trees, allowing us to manipulate and analyze the data stored in the tree.
+
+
+
+//  FOR DELETION OF NODE IN BST 
+
+// This code is a function that deletes a node with a specific value from a binary search tree (BST). 
+
+// A BST is a binary tree where each node has a value greater than all the values in its left subtree and less than all the values in its right subtree. 
+
+// The function takes two parameters: the root of the BST and the value to be deleted. It returns the root of the modified BST after the deletion.
+
+// The function starts with a base case: if the root is NULL (i.e., the BST is empty), it simply returns the root.
+
+// Next, it checks if the value to be deleted is equal to the value of the current root node. If they are equal, it handles three cases based on the number of children the node has.
+
+// If the node has no children (i.e., both the left and right child pointers are NULL), it simply returns NULL, effectively deleting the node.
+
+// If the node has only one child (either the left or right child pointer is not NULL), it updates the parent node's child pointer to point to the child node and then deletes the current node. It returns the child node as the new root.
+
+// If the node has two children, it finds the minimum value in the right subtree (i.e., the leftmost node in the right subtree) and replaces the value of the current node with the minimum value. It then recursively calls the deleteFromBST function on the right subtree to delete the node with the minimum value. Finally, it returns the root of the modified BST.
+
+// If the value to be deleted is less than the value of the current root node, it recursively calls the deleteFromBST function on the left subtree and updates the left child pointer of the current root node with the returned root.
+
+// If the value to be deleted is greater than the value of the current root node, it recursively calls the deleteFromBST function on the right subtree and updates the right child pointer of the current root node with the returned root.
+
+// Finally, it returns the root of the modified BST.
