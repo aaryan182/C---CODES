@@ -197,7 +197,7 @@ int main()
     cout<<minVal(root)->data;
 
     cout<<endl<<"maximum value of bst is : "<<endl;
-    cout<<maxVal(root)->data;
+    cout<<maxVal(root)->data; 
 
     
     return 0;
@@ -225,7 +225,7 @@ int main()
 // These functions provide various operations and traversals for binary search trees, allowing us to manipulate and analyze the data stored in the tree.
 
 
-
+ 
 //  FOR DELETION OF NODE IN BST 
 
 // This code is a function that deletes a node with a specific value from a binary search tree (BST). 
